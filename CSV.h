@@ -1,4 +1,7 @@
+#ifndef _CSV_H
+#define _CSV_H
 #pragma once
+
 #include <vector>
 #include <string>
 
@@ -30,6 +33,20 @@ public:
 	void setBinMinMax(float min, float max);
 	void resetCursor();
 
+	inline float getMin() {
+		return fMin;
+	}
+	inline float getMax() {
+		return fMax;
+	}
+
+	int getBin(size_t bin) {
+		if (bin < bins.size()) {
+			return bins[bin];
+		}
+		return bins.back();
+	}
+
 private:
 	bool bLoaded = false;
 	std::vector<float> values;
@@ -39,3 +56,5 @@ private:
 	float fMin = 0.f, fMax = 0.f;
 	float fMaxNorm = 0.f;
 };
+
+#endif

@@ -24,6 +24,10 @@ bool CSV::loadCSV(const std::string& path)
 	}
 	file.close();
 	cursor = values.begin();
+
+	setBinMinMax(*std::min_element(std::begin(values), std::end(values)), 
+		*std::max_element(std::begin(values), std::end(values)));
+
 	return true;
 }
 
@@ -53,12 +57,17 @@ int CSV::getNextValue()
 {
 	constexpr float EPSILON = 0.0001f;
 
-	if (cursor != values.end()) {
+	if (cursor != values.end() && !bins.empty()) {
 		float val = *cursor++;
 
 		// Normalize the data
 		val = std::max(val, fMin);
 		val = std::min(val, fMax);
+
+		if (val == fMin) {
+			return -2;
+		}
+
 		val = ((val - fMin) / fMaxNorm) * (bins.size() + 1);
 		//val -= EPSILON; // Biggest value should fit inside the bins still
 
