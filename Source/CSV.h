@@ -32,6 +32,7 @@ public:
 	void addNoteBin(int note);
 	void setBinMinMax(float min, float max);
 	void resetCursor();
+	void setCursor(size_t pos);
 
 	inline float getMin() {
 		return fMin;
@@ -39,12 +40,15 @@ public:
 	inline float getMax() {
 		return fMax;
 	}
-
-	int getBin(size_t bin) {
+	inline int getBin(size_t bin) {
 		if (bin < bins.size()) {
 			return bins[bin];
 		}
 		return bins.back();
+	}
+
+	inline void setSquelchZeroes(bool squelch) {
+		bSquelchZeroes = squelch;
 	}
 
 private:
@@ -55,6 +59,8 @@ private:
 
 	float fMin = 0.f, fMax = 0.f;
 	float fMaxNorm = 0.f;
+
+	bool bSquelchZeroes = false;
 };
 
 #endif

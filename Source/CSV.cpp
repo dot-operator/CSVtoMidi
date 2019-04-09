@@ -33,20 +33,21 @@ bool CSV::loadCSV(const std::string& path)
 
 CSV::CSV()
 {
-	// temporarily add a default set of notes
-	bins.push_back(60); // 1
-	bins.push_back(62); // 3
-	bins.push_back(63); // 4
-	bins.push_back(65); // 6
-	bins.push_back(67); // 8
-	bins.push_back(68); // 9
-	bins.push_back(70); // 11
+	bLoaded = false;
+	//// temporarily add a default set of notes
+	//bins.push_back(60); // 1
+	//bins.push_back(62); // 3
+	//bins.push_back(63); // 4
+	//bins.push_back(65); // 6
+	//bins.push_back(67); // 8
+	//bins.push_back(68); // 9
+	//bins.push_back(70); // 11
 
-	for (int i = 0; i < 256; ++i) {
-		values.push_back(0.f);
-	}
+	//for (int i = 0; i < 256; ++i) {
+	//	values.push_back(0.f);
+	//}
 	setBinMinMax(0.f, 2.f);
-	bLoaded = true;
+	//bLoaded = true;
 }
 
 CSV::~CSV()
@@ -64,7 +65,7 @@ int CSV::getNextValue()
 		val = std::max(val, fMin);
 		val = std::min(val, fMax);
 
-		if (val == fMin) {
+		if (bSquelchZeroes && (val == fMin)) {
 			return -2;
 		}
 
@@ -93,7 +94,6 @@ void CSV::addNoteBin(int note)
 
 void CSV::setBinMinMax(float min, float max)
 {
-	// idiot proof setter
 	fMin = std::min(min, max);
 	fMax = std::max(min, max);
 	fMaxNorm = fMax - fMin;
@@ -102,4 +102,13 @@ void CSV::setBinMinMax(float min, float max)
 void CSV::resetCursor()
 {
 	cursor = values.begin();
+}
+
+void CSV::setCursor(size_t pos)
+{
+	if (pos >= values.size())
+		cursor = values.end();
+	else {
+		cursor = values.begin() + pos;
+	}
 }

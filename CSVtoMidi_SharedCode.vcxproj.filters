@@ -391,7 +391,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CSV.cpp">
+    <ClCompile Include="..\..\Source\CSV.cpp">
       <Filter>CSVtoMidi\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\PluginProcessor.cpp">
@@ -2283,7 +2283,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CSV.h">
+    <ClInclude Include="..\..\Source\CSV.h">
       <Filter>CSVtoMidi\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\PluginProcessor.h">
