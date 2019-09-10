@@ -5,5 +5,6 @@ The mapping can be controlled with automation in your DAW, and it will automatic
 
 A sample of the output can be heard [here](https://soundcloud.com/dot_operator/sonifiedsix).
 
-It was designed to work with rainfall data from FSU, which can be found [here](https://climatecenter.fsu.edu/climate-data-access-tools/downloadable-data)
+It was designed to work with climate data (specifically, rainfall) from FSU, which can be found [here](https://climatecenter.fsu.edu/climate-data-access-tools/downloadable-data).
+
 Built with the [JUCE](https://juce.com) library.
